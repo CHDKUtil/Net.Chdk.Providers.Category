@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.IO;
 
@@ -15,10 +16,18 @@ namespace Net.Chdk.Providers.Category
         
         #region Constructor
 
-        public CategoryProvider()
+        public CategoryProvider(ILoggerFactory loggerFactory)
         {
+            Logger = loggerFactory.CreateLogger<CategoryProvider>();
+
             data = new Lazy<string[]>(GetData);
         }
+
+        #endregion
+
+        #region Fields
+
+        private ILogger<CategoryProvider> Logger { get; }
 
         #endregion
 
@@ -56,7 +65,9 @@ namespace Net.Chdk.Providers.Category
             using (var reader = File.OpenText(filePath))
             using (var jsonReader = new JsonTextReader(reader))
             {
-                return Serializer.Deserialize<string[]>(jsonReader);
+                var data = Serializer.Deserialize<string[]>(jsonReader);
+                Logger.LogInformation("Categories: {0}", JsonConvert.SerializeObject(data));
+                return data;
             }
         }
 
