@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using Net.Chdk.Model.Category;
 using System.IO;
+using System.Linq;
 
 namespace Net.Chdk.Providers.Category
 {
@@ -22,9 +24,14 @@ namespace Net.Chdk.Providers.Category
 
         #region ICategoryProvider Members
 
-        public string[] GetCategories()
+        public string[] GetCategoryNames()
         {
             return Data;
+        }
+
+        public CategoryInfo[] GetCategories()
+        {
+            return Data.Select(GetCategory).ToArray();
         }
 
         #endregion
@@ -39,6 +46,18 @@ namespace Net.Chdk.Providers.Category
         protected override LogLevel LogLevel => LogLevel.Information;
 
         protected override string Format => "Categories: {0}";
+
+        #endregion
+
+        #region Helper Methods
+
+        private static CategoryInfo GetCategory(string name)
+        {
+            return new CategoryInfo
+            {
+                Name = name,
+            };
+        }
 
         #endregion
     }
