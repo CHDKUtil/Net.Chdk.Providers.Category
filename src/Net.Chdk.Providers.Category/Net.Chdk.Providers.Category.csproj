@@ -38,9 +38,12 @@
   <ItemGroup>
     <PackageReference Include="microsoft.extensions.dependencyinjection.abstractions" Version="1.1.1" />
     <PackageReference Include="microsoft.extensions.logging.abstractions" Version="1.1.2" />
-    <PackageReference Include="Net.Chdk.Core" Version="0.2.0-alpha" />
-    <PackageReference Include="Net.Chdk.Model.Category" Version="0.1.0-alpha" />
-    <PackageReference Include="Net.Chdk.Providers.Base" Version="0.1.0-alpha" />
+    <PackageReference Include="Net.Chdk.Core" Version="0.2.0-alpha">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Net.Chdk.Providers.Base" Version="0.1.0-alpha">
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
     <PackageReference Include="Net.Chdk.Providers.Category.Core" Version="0.1.0-alpha" />
   </ItemGroup>
 
