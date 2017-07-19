@@ -1,10 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using Net.Chdk.Model.Category;
+using System;
 using System.IO;
 using System.Linq;
 
 namespace Net.Chdk.Providers.Category
 {
+    [Obsolete]
     sealed class CategoryProvider : DataProvider<string[]>, ICategoryProvider
     {
         #region Constants
