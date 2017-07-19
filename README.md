@@ -1,2 +1,2 @@
 # Net.Chdk.Providers.Category
-CHIMP category providers
+[OBSOLETE] CHIMP category providers
